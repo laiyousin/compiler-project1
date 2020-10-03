@@ -140,7 +140,7 @@ Z [zZ]
   /* define identifier here */
 [a-z A-Z_][a-z A-Z 0-9 _]*  	{LOG(KEYWORD); return(IDENTIFIER); }
 /* define INTEGERNUM, REALNUMBER, SCIENTIFIC here */
-[0-9]+  	                {LOG(KEYWORD); return(INTEGERNUM); }
+//[0-9]+  	                {LOG(KEYWORD); return(INTEGERNUM); }
 [0-9]+"."[0-9]+ 	        {LOG(KEYWORD); return(REALNUMBER); }
 [0-9]+"."[0-9]+[e E][+ -][0-9]+ {LOG(KEYWORD); return(SCIENTIFIC); }
   /* define single/multiple line comment here */
