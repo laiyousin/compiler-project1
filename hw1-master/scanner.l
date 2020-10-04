@@ -137,9 +137,8 @@ Z [zZ]
 ">="                	        			{LOG(KEYWORD); return(GETOP);      }
 "<="                   		    			{LOG(KEYWORD); return(LETOP);      }
 "!="	                        			{LOG(KEYWORD); return(NEQOP);      }
-[a-z][a-z|A-Z|0-9|_]*[a-z|A-Z|0-9]	       	{LOG(IDENTIFIER);}
-[0-9]+                                                  {LOG(NUMBER);}
-[0-9]+"."[0-9]+ 	            			{LOG(REALNUMBER);}
+[a-z][a-z|A-Z|0-9|_]*[a-z|A-Z|0-9]	        	{LOG(IDENTIFIER);}
+[0-9]+"."[0-9]+ 	            			{LOG(NUMBER);}
 [0-9]+"."[0-9]+[e E][+ -][0-9]+ 			{LOG(SCIENTIFIC);}
 \/\/(.*)                        			{}
 \/\*(.*\n)*.*\*\/               			{}
