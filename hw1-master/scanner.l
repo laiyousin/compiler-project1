@@ -96,53 +96,55 @@ Y [yY]
 Z [zZ]
 
 %%
-								/* v could do something */
-{P}{R}{O}{G}{R}{A}{M}       	{LOG(KEYWORD); return(PROGRAM);    }
-{V}{A}{R}                   	{LOG(KEYWORD); return(VAR);        }
-{A}{R}{R}{A}{Y}             	{LOG(KEYWORD); return(ARRAY);      }
-{O}{F}                      	{LOG(KEYWORD); return(OF);         }
-{I}{N}{T}{E}{G}{E}{R}       	{LOG(KEYWORD); return(INTEGER);    }
-{R}{E}{A}{L}                	{LOG(KEYWORD); return(REAL);       }
-{S}{T}{R}{I}{N}{G}          	{LOG(KEYWORD); return(STRING);     }
-{F}{U}{N}{C}{T}{I}{O}{N}    	{LOG(KEYWORD); return(FUNCTION);   }
-{P}{R}{O}{C}{E}{D}{U}{R}{E} 	{LOG(KEYWORD); return(PROCEDURE);  }
-{B}{E}{G}{I}{N}             	{LOG(KEYWORD); return(PBEGIN);     }
-{E}{N}{D}                   	{LOG(KEYWORD); return(END);        }
-{I}{F}                      	{LOG(KEYWORD); return(IF);         }
-{T}{H}{E}{N}            	    {LOG(KEYWORD); return(THEN);       }
-{E}{L}{S}{E}            	    {LOG(KEYWORD); return(ELSE);       }
-{W}{H}{I}{L}{E}         	    {LOG(KEYWORD); return(WHILE);      }
-{D}{O}                  	    {LOG(KEYWORD); return(DO);         }
-{N}{O}{T}                  		{LOG(KEYWORD); return(NOT);        }
-{A}{N}{D}           	        {LOG(KEYWORD); return(AND);        }
-{O}{R}                 		    {LOG(KEYWORD); return(OR);         }
+											/* v could do something */
+{P}{R}{O}{G}{R}{A}{M}       				{LOG(KEYWORD); return(PROGRAM);    }
+{V}{A}{R}                   				{LOG(KEYWORD); return(VAR);        }
+{A}{R}{R}{A}{Y}             				{LOG(KEYWORD); return(ARRAY);      }
+{O}{F}                      				{LOG(KEYWORD); return(OF);         }
+{I}{N}{T}{E}{G}{E}{R}       				{LOG(KEYWORD); return(INTEGER);    }
+{R}{E}{A}{L}                				{LOG(KEYWORD); return(REAL);       }
+{S}{T}{R}{I}{N}{G}          				{LOG(KEYWORD); return(STRING);     }
+{F}{U}{N}{C}{T}{I}{O}{N}    				{LOG(KEYWORD); return(FUNCTION);   }
+{P}{R}{O}{C}{E}{D}{U}{R}{E} 				{LOG(KEYWORD); return(PROCEDURE);  }
+{B}{E}{G}{I}{N}             				{LOG(KEYWORD); return(PBEGIN);     }
+{E}{N}{D}                   				{LOG(KEYWORD); return(END);        }
+{I}{F}                      				{LOG(KEYWORD); return(IF);         }
+{T}{H}{E}{N}            	    			{LOG(KEYWORD); return(THEN);       }
+{E}{L}{S}{E}            	    			{LOG(KEYWORD); return(ELSE);       }
+{W}{H}{I}{L}{E}         	    			{LOG(KEYWORD); return(WHILE);      }
+{D}{O}                  	    			{LOG(KEYWORD); return(DO);         }
+{N}{O}{T}                  					{LOG(KEYWORD); return(NOT);        }
+{A}{N}{D}           	        			{LOG(KEYWORD); return(AND);        }
+{O}{R}                 		    			{LOG(KEYWORD); return(OR);         }
 
-"("	                            {LOG(KEYWORD); return(LPAREN);     }
-")" 	                        {LOG(KEYWORD); return(RPAREN);     }
-";"     	                    {LOG(KEYWORD); return(SEMICOLON);  }
-"."         	                {LOG(KEYWORD); return(DOT);        }
-","             	            {LOG(KEYWORD); return(COMMA);      }
-":"                 	        {LOG(KEYWORD); return(COLON);      }
-"["                     	    {LOG(KEYWORD); return(LBRACE);     }
-"]" 	                        {LOG(KEYWORD); return(RBRACE);     }
-".."    	                    {LOG(KEYWORD); return(DOTDOT);     }
-":="        	                {LOG(KEYWORD); return(ASSIGNMENT); }
-"+"             	            {LOG(KEYWORD); return(ADDOP);      }
-"-"                 	        {LOG(KEYWORD); return(SUBOP);      }
-"*"                     	    {LOG(KEYWORD); return(MULOP);      }
-"/" 	                       	{LOG(KEYWORD); return(DIVOP);      }
-">"     	                    {LOG(KEYWORD); return(GTOP);       }
-"<"         	                {LOG(KEYWORD); return(LTOP);       }
-"="             	            {LOG(KEYWORD); return(EQOP);       }
-">="                	        {LOG(KEYWORD); return(GETOP);      }
-"<="                   		    {LOG(KEYWORD); return(LETOP);      }
-"!="	                        {LOG(KEYWORD); return(NEQOP);      }
-[a-z][a-z A-Z 0-9 _]*  	{LOG(KEYWORD); return(IDENTIFIER); }
-[0-9]+  	                {LOG(KEYWORD); return(INTEGERNUM); }
-[0-9]+"."[0-9]+[Ee][0-9]+ 	{LOG(KEYWORD); return(REALNUMBER); }
-[0-9]+"."[0-9]+[e E][+ -][0-9]+ {LOG(KEYWORD); return(SCIENTIFIC); }
-\/\/(.*)                        {}
-\/\*(.*\n)*.*\*\/               {}
+"("	                            			{LOG(KEYWORD); return(LPAREN);     }
+")" 	                        			{LOG(KEYWORD); return(RPAREN);     }
+";"     	                    			{LOG(KEYWORD); return(SEMICOLON);  }
+"."         	                			{LOG(KEYWORD); return(DOT);        }
+","             	            			{LOG(KEYWORD); return(COMMA);      }
+":"                 	        			{LOG(KEYWORD); return(COLON);      }
+"["                     	    			{LOG(KEYWORD); return(LBRACE);     }
+"]" 	                        			{LOG(KEYWORD); return(RBRACE);     }
+".."    	                    			{LOG(KEYWORD); return(DOTDOT);     }
+":="        	                			{LOG(KEYWORD); return(ASSIGNMENT); }
+"+"             	            			{LOG(KEYWORD); return(ADDOP);      }
+"-"                 	        			{LOG(KEYWORD); return(SUBOP);      }
+"*"                     	    			{LOG(KEYWORD); return(MULOP);      }
+"/" 	                       				{LOG(KEYWORD); return(DIVOP);      }
+">"     	                    			{LOG(KEYWORD); return(GTOP);       }
+"<"         	                			{LOG(KEYWORD); return(LTOP);       }
+"="             	            			{LOG(KEYWORD); return(EQOP);       }
+">="                	        			{LOG(KEYWORD); return(GETOP);      }
+"<="                   		    			{LOG(KEYWORD); return(LETOP);      }
+"!="	                        			{LOG(KEYWORD); return(NEQOP);      }
+[a-z][a-z A-Z 0-9 _]*[a-z A-Z 0-9]	        	{LOG(KEYWORD); return(IDENTIFIER); }
+[0-9]+  	                    			{LOG(KEYWORD); return(INTEGERNUM); }
+[0-9]+"."[0-9]+ 	            			{LOG(KEYWORD); return(REALNUMBER); }
+[0-9]+"."[0-9]+[e E][+ -][0-9]+ 			{LOG(KEYWORD); return(SCIENTIFIC); }
+\/\/(.*)                        			{}
+\/\*(.*\n)*.*\*\/               			{}
+ \".*\"                         			{LOG(KEYWORD); return(LITERALSTR); }
+  /* define pragma here */ 
 [ \t\f\r]    LIST;
 
 \n {
@@ -172,3 +174,4 @@ int main(int argc, char** argv) {
 }
 
 int yywrap() { fclose(yyin), exit(0); }
+ 
