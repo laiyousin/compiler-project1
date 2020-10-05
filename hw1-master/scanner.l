@@ -61,9 +61,9 @@
 #define LIST       strcat(buffer, yytext)
 #define LIST_FLUSH do{ if(opt_list) printf("%s", buffer); *buffer = 0; }while(0)
 #define LOG(TYPE) do{ LIST; fprintf(stderr, "token(type:%-10s) on line %4d, %3d : %s\n", #TYPE, line_no, chr_no - yyleng + 1, yytext); } while(0)
-#define COMMENT do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string\n", line_no, chr_no-(int)yyleng+1); } while(0)	
-#define COMMENTDS do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string start\n", line_no, chr_no-(int)yyleng+1); } while(0)	
-#define COMMENTDE do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string end\n", line_no, chr_no-(int)yyleng+1); } while(0)	
+#define COMMENT do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string\n", line_no, chr_no-yyleng+1); } while(0)	
+#define COMMENTDS do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string start\n", line_no, chr_no-yyleng+1); } while(0)	
+#define COMMENTDE do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string end\n", line_no, chr_no-yyleng+1); } while(0)	
 
 int opt_list = 1;
 int line_no = 1, chr_no = 0;
@@ -140,14 +140,14 @@ Z [zZ]
 ">="                	        			{LOG(KEYWORD); return(GETOP);      }
 "<="                   		    			{LOG(KEYWORD); return(LETOP);      }
 "!="	                        			{LOG(KEYWORD); return(NEQOP);      }
-[a-z][a-z|A-Z|0-9|_]*[a-z|A-Z|0-9]	    	{LOG(IDENTIFIER);}
-[0-9]+("."[0-9]+)*([E|e][+|-]*[0-9]+)*      {LOG(NUMBER);}
+[a-z][a-z|A-Z|0-9|_]*[a-z|A-Z|0-9]	   	 	{LOG(IDENTIFIER);}
+[0-9]+("."[0-9]+)*([E|e][+|-]*[0-9]+)*     		{LOG(NUMBER);}
 [0-9]+"."[0-9]+ 	            			{LOG(REALNUMBER);}
 [0-9]+"."[0-9]+[e|E][+|-][0-9]+ 			{LOG(SCIENTIFIC);}
-\"([^\\\"]|\\.)*\"	                        {LOG(STRING);}
+\"([^\\\"]|\\.)*\"	                   	        {LOG(STRING);}
 ("//")|("//"[^\n]+)                			{COMMENT;}
-"/*"(.*\n.*)*                               {COMMENTDS;}
-"*/"                                        {COMMENTDE;}
+"/*"(.*\n.*)*                               		{COMMENTDS;}
+"*/"                                       		{COMMENTDE;}
 
 [ \t\f\r]    LIST;
 
