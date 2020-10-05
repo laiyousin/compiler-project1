@@ -147,7 +147,7 @@ Z [zZ]
 "//"|"//"[^\n]+                    			{COMMENT;}
 "/*"(.*\n.*)*                               {COMMENTDS;}
 "*/"                                        {COMMENTDE;}
-\"(([^\"]|\\\")*[^\\])?\"         			{LOG(STRING);}
+\"([^\\\"]|\\.)*\"	                        {LOG(STRING);}
 [ \t\f\r]    LIST;
 
 \n {
