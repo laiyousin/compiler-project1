@@ -61,6 +61,7 @@
 #define LIST       strcat(buffer, yytext)
 #define LIST_FLUSH do{ if(opt_list) printf("%s", buffer); *buffer = 0; }while(0)
 #define LOG(TYPE) do{ LIST; fprintf(stderr, "token(type:%-10s) on line %4d, %3d : %s\n", #TYPE, line_no, chr_no - yyleng + 1, yytext); } while(0)
+#define COMMENT { LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string\n", line_no, chr_no-(int)yyleng+1); }	
 
 int opt_list = 1;
 int line_no = 1, chr_no = 0;
@@ -113,7 +114,7 @@ Z [zZ]
 {E}{L}{S}{E}            	    			{LOG(KEYWORD); return(ELSE);       }
 {W}{H}{I}{L}{E}         	    			{LOG(KEYWORD); return(WHILE);      }
 {D}{O}                  	    			{LOG(KEYWORD); return(DO);         }
-{N}{O}{T}                  					{LOG(KEYWORD); return(NOT);        }
+{N}{O}{T}                  				{LOG(KEYWORD); return(NOT);        }
 {A}{N}{D}           	        			{LOG(KEYWORD); return(AND);        }
 {O}{R}                 		    			{LOG(KEYWORD); return(OR);         }
 
@@ -137,11 +138,11 @@ Z [zZ]
 ">="                	        			{LOG(KEYWORD); return(GETOP);      }
 "<="                   		    			{LOG(KEYWORD); return(LETOP);      }
 "!="	                        			{LOG(KEYWORD); return(NEQOP);      }
-[a-z][a-z|A-Z|0-9|_]*[a-z|A-Z|0-9]	    	{LOG(IDENTIFIER);}
-[0-9]+("."[0-9]+)*([E|e][+|-]*[0-9]+)*      {LOG(NUMBER);}
+[a-z][a-z|A-Z|0-9|_]*[a-z|A-Z|0-9]	   	 	{LOG(IDENTIFIER);}
+[0-9]+("."[0-9]+)*([E|e][+|-]*[0-9]+)*    		{LOG(NUMBER);}
 [0-9]+"."[0-9]+ 	            			{LOG(REALNUMBER);}
 [0-9]+"."[0-9]+[e|E][+|-][0-9]+ 			{LOG(SCIENTIFIC);}
-\/\/(.*)                        			{}
+"//"(.*)                        			{COMMENT;}
 \/\*(.*\n)*.*\*\/               			{}
  \".*\"                         			{LOG(LITERALSTR);}
 [ \t\f\r]    LIST;
