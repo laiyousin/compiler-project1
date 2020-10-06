@@ -61,13 +61,17 @@
 #define LIST       strcat(buffer, yytext)
 #define LIST_FLUSH do{ if(opt_list) printf("%s", buffer); *buffer = 0; }while(0)
 #define LOG(TYPE) do{ LIST; fprintf(stderr, "token(type:%-10s) on line %4d, %3d : %s\n", #TYPE, line_no, chr_no - yyleng + 1, yytext); } while(0)
-#define COMMENT do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string\n", line_no, chr_no-(int)yyleng+1); } while(0)	
-#define COMMENTDS do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string start\n", line_no, chr_no-yyleng+1); fprintf(stderr, "[INFO ] line %4d:%3d comment string end\n", line_no, chr_no-1);} while(0)	
+#define COMMENT do{ LIST; fprintf(stderr, "[INFO ] line %4d:%3d comment string\n", line_no, chr_no-(int)yyleng+1); } while(0)		
+#define COMMENTS 		
+
+# pragma list on
+# pragma list off
 
 
 int opt_list = 1;
 int line_no = 1, chr_no = 0;
 char buffer[MAX_LINE_LENG];
+int flag = 0;
 
 %}
 
@@ -146,7 +150,22 @@ Z [zZ]
 [0-9]+"."[0-9]+[e|E][+|-][0-9]+ 			{LOG(SCIENTIFIC);}
 \"([^\\\"]|\\.)*\"	                        {LOG(STRING);}
 ("//")|("//"[^\n]+)                			{COMMENT;}
-"/*"(.*(\n)*.*)*"*/"                        {COMMENTDS;}
+"/*"(.*|("\n")*)*                           {do
+												{ 
+													LIST;
+													fprintf(stderr, "[INFO ] line %4d:%3d comment string start\n", line_no, chr_no-(int)yyleng+1);
+													flag = 1;
+												} while(0);
+											}
+"*/"                                        {do
+												{
+													if(flag == 1)
+													{
+														LIST;
+														fprintf(stderr, "[INFO ] line %4d:%3d comment string end\n", line_no, chr_no-(int)yyleng+1);
+													}
+												} while(0);
+											}
 
 [ \t\f\r]    LIST;
 
